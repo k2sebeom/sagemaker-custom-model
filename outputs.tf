@@ -15,3 +15,13 @@ output "model_execution_role" {
 output "sagemaker_model" {
   value = aws_sagemaker_model.custom_model.arn
 }
+
+output "sagemaker_endpoint_name" {
+  description = "Name of the SageMaker endpoint (empty if deploy_endpoint is false)"
+  value       = var.deploy_endpoint ? aws_sagemaker_endpoint.model_endpoint[0].name : null
+}
+
+output "sagemaker_endpoint_arn" {
+  description = "ARN of the SageMaker endpoint (empty if deploy_endpoint is false)"
+  value       = var.deploy_endpoint ? aws_sagemaker_endpoint.model_endpoint[0].arn : null
+}
